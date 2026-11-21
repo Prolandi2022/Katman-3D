@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Katman 3D | Özel 3D baskı siparişi</title>
+<meta name="description" content="Gönder, bulalım, basalım. Özel 3D baskı sipariş talebi oluşturun.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&subset=latin-ext&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e63946;--blue:#2b59ff;--green:#1fa95b;--black:#1c1c22;--bg:#f5f7ff;--ink:#1c1c22;--mute:#5b5f73;--card:#fff;--line:#dfe3f5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#eef2ff;color:var(--ink);line-height:1.6;font-size:17px}
+h1,h2,h3{line-height:1.12;margin:0 0 .5em;font-weight:900;letter-spacing:-.02em}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.brand{font-weight:900;font-size:1.25rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+.brand i{display:inline-grid;grid-template-columns:repeat(2,10px);gap:2px}
+.brand i b{width:10px;height:10px;border-radius:3px}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--mute);font-weight:700;font-size:.95rem}
+nav a:hover{color:var(--ink)}
+.hero{position:relative;overflow:hidden;background:radial-gradient(#bcc8f7 1.6px,transparent 1.6px) 0 0/24px 24px,linear-gradient(135deg,#ffe3e7,#e1e9ff 55%,#dcf6e6);border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding-top:56px;padding-bottom:56px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.8rem)}
+.hero p{color:var(--mute);font-size:1.15rem;max-width:34em}
+.btn{display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:800;background:var(--blue);color:#fff;padding:14px 26px;border-radius:14px;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{background:#1e45d6;transform:translateY(-2px)}
+.btn.alt{background:var(--red)}.btn.alt:hover{background:#c92a37}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.stack{height:300px;border-radius:22px;border:6px solid var(--black);background:
+repeating-linear-gradient(to top,var(--red) 0 18px,#0000 18px 22px) 0 0/100% 25% no-repeat;position:relative;overflow:hidden}
+.stack{background:linear-gradient(to bottom,var(--black) 0 25%,var(--green) 25% 50%,var(--blue) 50% 75%,var(--red) 75% 100%)}
+.stack::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to top,rgba(255,255,255,.28) 0 2px,transparent 2px 9px)}
+.stack{clip-path:inset(0 0 0 0);animation:build 2.4s steps(24,end) 1}
+@keyframes build{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){.stack{animation:none}.btn{transition:none}}
+section{padding:64px 0}
+#nasil{background:#fff0f2}#neler{background:#e6edff}#siparis{background:#e6f8ec}#hakkimizda{background:#fff4d6}footer{background:#fff}
+section h2{font-size:clamp(1.7rem,3.5vw,2.3rem)}
+.lead{color:var(--mute);max-width:40em}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:28px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:22px}
+.card .em{font-size:2.2rem;display:block;margin-bottom:6px}
+.card h3{font-size:1.15rem}
+.card p{margin:0;color:var(--mute);font-size:.97rem}
+.c1{border-color:var(--red)}.c2{border-color:var(--blue)}.c3{border-color:var(--green)}.c4{border-color:var(--black)}
+.steps .card{border-width:0;color:#fff}
+.steps .card p{color:rgba(255,255,255,.9)}
+.steps .s1{background:var(--red)}.steps .s2{background:var(--blue)}.steps .s3{background:var(--green)}
+.formbox{background:#fff;border:2px solid var(--line);border-radius:24px;padding:28px;margin-top:28px}
+label,.lab{display:block;font-weight:800;margin:18px 0 6px}
+input[type=text],input[type=email],input[type=tel],input[type=number],textarea,select{width:100%;font:inherit;padding:12px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.row{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+.imgs{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+.drop{position:relative;aspect-ratio:1;border:2px dashed #aab2d8;border-radius:16px;display:grid;place-items:center;text-align:center;color:var(--mute);font-weight:700;font-size:.9rem;overflow:hidden;cursor:pointer;background:#fafbff}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.drop:focus-within{outline:3px solid var(--blue)}
+.colors{display:flex;gap:12px;flex-wrap:wrap}
+.colors label{margin:0;cursor:pointer;font-weight:700}
+.colors input{position:absolute;opacity:0}
+.colors span{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 8px;border:2px solid var(--line);border-radius:999px;background:#fff}
+.colors span::before{content:"";width:28px;height:28px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.colors input:checked+span{border-color:var(--ink);box-shadow:0 0 0 3px var(--c)}
+.colors input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.note{font-size:.9rem;color:var(--mute);margin:6px 0 0}
+.err{color:#b4232f;font-weight:700;margin:14px 0 0}
+#progress{margin-top:22px;padding:20px;border-radius:16px;background:#eef2ff}
+.bar{height:10px;border-radius:99px;background:#d7defa;overflow:hidden;margin-top:12px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--blue),var(--green));transition:width .5s}
+#result{margin-top:22px;border:3px solid var(--green);border-radius:18px;padding:22px;background:#f2fcf6}
+#result .price{font-size:2.6rem;font-weight:900;color:var(--green);line-height:1}
+.facts{display:flex;gap:22px;flex-wrap:wrap;margin:14px 0}
+.facts div b{display:block;font-size:1.25rem}
+.facts div span{color:var(--mute);font-size:.9rem}
+.about{display:grid;gap:28px;grid-template-columns:1fr 1fr;align-items:start}
+.sw{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0}
+.sw div{text-align:center;font-weight:800;font-size:.9rem}
+.sw b{display:block;width:62px;height:62px;border-radius:50%;margin:0 auto 6px;border:4px solid #fff;box-shadow:0 0 0 2px var(--line)}
+.dark{background:var(--black);color:#fff}
+.dark .lead,.dark a{color:#cfd4ff}
+footer{padding:28px 0;text-align:center;color:var(--mute);font-size:.9rem}
+.drop img{display:block}.drop img[hidden]{display:none}
+.drop .t{pointer-events:none;padding:6px}.drop.has .t{display:none}
+.drop .fn{display:none;position:absolute;left:0;right:0;bottom:0;background:rgba(28,28,34,.78);color:#fff;font-size:.72rem;padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.drop.has .fn{display:block}
+.player{margin:26px 0 36px;background:var(--black);border-radius:24px;padding:14px;color:#fff}
+.stage{border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#2b59ff,#6a3df0 55%,#e63946)}
+.stage svg{display:block;width:100%;height:auto}
+.stage text{font-family:Nunito,system-ui,sans-serif;font-weight:900}
+.cap{padding:14px 8px 2px;text-align:center;font-weight:700;font-size:1.05rem;min-height:3.4em}
+.ctl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.ctl button{font:inherit;font-weight:800;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;background:#fff;color:var(--ink)}
+.dots{margin-left:auto;display:flex;gap:8px}.ctl .dots button{width:14px;height:14px;padding:0;border-radius:50%;background:#555a78}.ctl .dots button.on{background:#fff}
+.pop{opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.3,1.6,.5,1) forwards}
+.up{opacity:0;animation:up .6s ease-out forwards}
+.ly{opacity:0;animation:show .01s forwards}
+.noz{animation:rise 4.16s steps(13,end) forwards}
+.mag{animation:scan 4s ease-in-out forwards}
+.fall{animation:fall 3s linear infinite}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes show{to{opacity:1}}
+@keyframes rise{to{transform:translateY(-117px)}}
+@keyframes scan{25%{transform:translate(140px,0)}50%{transform:translate(280px,0)}75%{transform:translate(280px,120px)}100%{transform:translate(140px,120px)}}
+@keyframes fall{from{transform:translateY(-20px)}to{transform:translateY(370px)}}
+@media (prefers-reduced-motion:reduce){.pop,.up{animation-duration:.01s}.noz,.mag,.fall{animation:none}}
+@media (max-width:780px){.hero .wrap,.about,.row{grid-template-columns:1fr}.stack{height:200px}nav{gap:12px}nav a{font-size:.85rem}section{padding:44px 0}.formbox{padding:18px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#"><i><b style="background:var(--red)"></b><b style="background:var(--blue)"></b><b style="background:var(--green)"></b><b style="background:var(--black)"></b></i>Katman 3D</a>
+    <nav>
+      <a href="#nasil">Nasıl çalışır</a>
+      <a href="#siparis">Sipariş talebi</a>
+      <a href="#hakkimizda">Hakkımızda</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Aklındaki ürünü katman katman basalım.</h1>
+      <p>İstediğin ürünün görsellerini gönder, kısaca anlat. Sistem modeli arasın, tahmini fiyatı hemen görürsün. Beğenirsen talebin bize ulaşır.</p>
+      <p><a class="btn" href="#siparis">Sipariş talebi oluştur</a></p>
+    </div>
+    <div class="stack" role="img" aria-label="Katman katman basılmış renkli bir nesne"></div>
+  </div>
+</div>
+
+<section id="nasil">
+  <div class="wrap">
+    <h2>Üç adımda sipariş</h2>
+    <div class="player">
+      <div class="stage"><svg id="scn" viewBox="0 0 640 360" role="img" aria-label="Sipariş sürecini anlatan animasyon"></svg></div>
+      <div class="cap" id="cap"></div>
+      <div class="ctl"><button type="button" id="pp">⏸ Duraklat</button><button type="button" id="snd">🔇 Sesli anlatım kapalı</button><span class="dots" id="dots"></span></div>
+    </div>
+    <div class="grid steps">
+      <div class="card s1"><span class="em">📸</span><h3>Görselini gönder</h3><p>İnternetten bulduğun birkaç görseli yükle, ürünü kısaca anlat ve rengini seç.</p></div>
+      <div class="card s2"><span class="em">🔎</span><h3>Model bulunsun</h3><p>Sistem MakerWorld’de aynı ya da en yakın modeli arar, boyut ve süre bilgisini toplar.</p></div>
+      <div class="card s3"><span class="em">🧊</span><h3>Fiyatı gör, onayla</h3><p>Tahmini fiyat ekrana gelir. Uygunsa talebi gönder, biz dönüş yapalım.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="neler">
+  <div class="wrap">
+    <h2>Neler basıyoruz?</h2>
+    <p class="lead">Aklına gelen çoğu küçük ve orta boy ürün basılabilir.</p>
+    <div class="grid">
+      <div class="card c1"><span class="em">🧸</span><h3>Figürler ve oyuncaklar</h3><p>Karakterler, minyatürler, hediyelik objeler.</p></div>
+      <div class="card c2"><span class="em">🔧</span><h3>Aparat ve yedek parça</h3><p>Tutucu, kapak, kanca, bağlantı parçası.</p></div>
+      <div class="card c3"><span class="em">🗂️</span><h3>Düzenleyiciler</h3><p>Masa, mutfak, atölye için organizerlar.</p></div>
+      <div class="card c4"><span class="em">🎁</span><h3>Kişisel hediyeler</h3><p>Anahtarlık, saksı, isimlik, dekor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="siparis">
+  <div class="wrap">
+    <h2>Sipariş talebi oluştur</h2>
+    <p class="lead">Önce ürünü tarif et ve fiyatı gör. Beğenirsen iletişim bilgilerini yazıp talebi gönderirsin.</p>
+
+    <form class="formbox" id="order" name="siparis" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="siparis">
+      <p hidden><label>Boş bırakın <input name="bot-field"></label></p>
+      <input type="hidden" name="tahmini_agirlik" id="h_w">
+      <input type="hidden" name="tahmini_sure" id="h_t">
+      <input type="hidden" name="tahmini_fiyat" id="h_p">
+      <input type="hidden" name="bulunan_model" id="h_m">
+
+      <div class="lab" style="margin-top:0">Ürün görselleri (en az 1, en fazla 3)</div>
+      <div class="imgs">
+        <label class="drop" style="margin:0"><span class="t">+ Görsel 1</span><input class="img-in" type="file" name="gorsel1" accept="image/*"><img alt="" hidden><span class="fn"></span></label>
+        <label class="drop" style="margin:0"><span class="t">+ Görsel 2</span><input class="img-in" type="file" name="gorsel2" accept="image/*"><img alt="" hidden><span class="fn"></span></label>
+        <label class="drop" style="margin:0"><span class="t">+ Görsel 3</span><input class="img-in" type="file" name="gorsel3" accept="image/*"><img alt="" hidden><span class="fn"></span></label>
+      </div>
+      <p class="note">Toplam görsel boyutu 7 MB’ı geçmesin.</p>
+
+      <label for="aciklama">Ürün hakkında açıklama</label>
+      <textarea id="aciklama" name="aciklama" placeholder="Örn: Telefon standı, iki parçalı, masaüstü için. Yaklaşık 10 cm yüksekliğinde."></textarea>
+
+      <div class="row">
+        <div>
+          <label for="boyut">Yaklaşık boyut</label>
+          <select id="boyut" name="boyut">
+            <option value="">Seçin</option>
+            <option value="s">Küçük (en uzun kenar 6 cm’e kadar)</option>
+            <option value="m">Orta (6–12 cm)</option>
+            <option value="l">Büyük (12–20 cm)</option>
+            <option value="xl">Çok büyük (20 cm üzeri)</option>
+          </select>
+        </div>
+        <div>
+          <label for="adet">Adet</label>
+          <input id="adet" name="adet" type="number" min="1" max="50" value="1">
+        </div>
+      </div>
+
+      <div class="lab">Renk</div>
+      <div class="colors" role="radiogroup" aria-label="Renk">
+        <label><input type="radio" name="renk" value="Kırmızı" checked><span style="--c:#e63946">Kırmızı</span></label>
+        <label><input type="radio" name="renk" value="Mavi"><span style="--c:#2b59ff">Mavi</span></label>
+        <label><input type="radio" name="renk" value="Yeşil"><span style="--c:#1fa95b">Yeşil</span></label>
+        <label><input type="radio" name="renk" value="Siyah"><span style="--c:#1c1c22">Siyah</span></label>
+      </div>
+      <p class="note">Çok renkli istiyorsan hangi parçanın hangi renk olacağını açıklamaya yaz.</p>
+
+      <p class="err" id="err" role="alert" hidden></p>
+      <p style="margin-top:22px"><button class="btn" type="button" id="analyzeBtn">Modeli bul ve fiyatla</button></p>
+
+      <div id="progress" hidden aria-live="polite">
+        <b id="pText">Başlıyoruz…</b>
+        <div class="bar"><i id="pBar"></i></div>
+      </div>
+
+      <div id="result" hidden>
+        <b>Model bilgileri toplandı</b>
+        <p id="rModel" style="margin:6px 0 0;color:var(--mute)"></p>
+        <div class="facts">
+          <div><b id="rW"></b><span>tahmini ağırlık</span></div>
+          <div><b id="rT"></b><span>tahmini baskı süresi</span></div>
+          <div><b id="rC"></b><span>seçilen renk</span></div>
+        </div>
+        <div class="price" id="rP"></div>
+        <p class="note">Bu fiyat tahminidir. Model sipariş sonrası kontrol edilir, fark çıkarsa sizinle iletişime geçilir.</p>
+
+        <div class="row">
+          <div><label for="ad">Adınız</label><input id="ad" name="ad" type="text" required autocomplete="name"></div>
+          <div><label for="mail">E-posta</label><input id="mail" name="eposta" type="email" required autocomplete="email"></div>
+        </div>
+        <label for="tel">Telefon (isteğe bağlı)</label>
+        <input id="tel" name="telefon" type="tel" autocomplete="tel">
+        <p style="margin-top:22px"><button class="btn alt" type="submit" id="sendBtn">Beğendim, talebi gönder</button></p>
+      </div>
+    </form>
+
+    <div class="formbox" id="done" hidden style="border-color:var(--green)">
+      <h3>Talebin bize ulaştı 🎉</h3>
+      <p>Görsellerini ve açıklamanı aldık. En kısa sürede e-posta ile dönüş yapacağız.</p>
+    </div>
+  </div>
+</section>
+
+<section id="hakkimizda">
+  <div class="wrap about">
+    <div>
+      <h2>Hakkımızda</h2>
+      <p>Katman 3D, evde kurduğumuz küçük bir baskı atölyesi. Ürünleri <b>Bambu Lab A1 Combo</b> yazıcıda, <b>AMS</b> ile filament değişimi yaparak basıyoruz.</p>
+      <p>Hızlı ve temiz baskı için her işi tek tek kontrol eder, istediğin renkte teslim ederiz.</p>
+    </div>
+    <div class="card c2">
+      <h3>Filamentimiz: eSUN PLA Basic</h3>
+      <p>Günlük kullanıma uygun, kolay basılan ve doğa dostu bir malzeme olan PLA ile çalışıyoruz. Şu an stokta olan renkler:</p>
+      <div class="sw">
+        <div><b style="background:#e63946"></b>Kırmızı</div>
+        <div><b style="background:#2b59ff"></b>Mavi</div>
+        <div><b style="background:#1fa95b"></b>Yeşil</div>
+        <div><b style="background:#1c1c22"></b>Siyah</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="iletisim" class="dark">
+  <div class="wrap">
+    <h2>İletişim</h2>
+    <p class="lead">Sorun, özel isteğin ya da toplu sipariş fikrin mi var? Bize e-posta yaz.</p>
+    <p><a class="btn" href="mailto:cagataykaraavci@gmail.com">cagataykaraavci@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>© <span id="yr"></span> Katman 3D. Bambu Lab A1 Combo ile üretilmiştir.</footer>
+
+<script>
+/* Fiyat ayarları (kendine göre değiştir) */
+const FIL_TL_GRAM = 0.65;  // filament: gram başına TL
+const SAAT_TL     = 25;    // makine + elektrik + emek: saat başına TL
+const KAR_CARPANI = 1.4;   // küçük kâr payı
+const MIN_FIYAT   = 80;    // en düşük fiyat (TL)
+const BOYUTLAR = {s:{g:15,h:1.5},m:{g:50,h:4.5},l:{g:140,h:11},xl:{g:300,h:24}};
+
+const $ = s => document.querySelector(s);
+const form = $("#order"), errBox = $("#err");
+$("#yr").textContent = new Date().getFullYear();
+
+const shots = [];
+function shrink(u){return new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.75))};im.onerror=no;im.src=u})}
+document.querySelectorAll(".img-in").forEach((inp,i) => inp.addEventListener("change", () => {
+  const f = inp.files[0], box = inp.parentElement, img = box.querySelector("img");
+  shots[i] = null; box.classList.remove("has"); img.hidden = true;
+  if (!f) return;
+  const rd = new FileReader();
+  rd.onload = async () => {
+    try { const small = await shrink(rd.result); shots[i] = small; img.src = small; img.hidden = false; box.querySelector(".fn").textContent = f.name; box.classList.add("has"); showErr(""); }
+    catch(e){ inp.value = ""; showErr("Bu görsel okunamadı. JPG veya PNG biçiminde bir görsel seçin."); }
+  };
+  rd.readAsDataURL(f);
+}));
+
+function showErr(t){ errBox.textContent = t; errBox.hidden = !t; }
+function totalSize(){ return [...document.querySelectorAll(".img-in")].reduce((a,i)=>a+(i.files[0]?i.files[0].size:0),0); }
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function fmtTime(h){ const m=Math.round(h*60), hh=Math.floor(m/60), mm=m%60; return hh? hh+" sa "+(mm? mm+" dk":"") : mm+" dk"; }
+
+/* Netlify Function: MakerWorld araması + ağırlık/süre tahmini (netlify/functions/analyze.mjs) */
+async function remoteLookup(aciklama, boyut){
+  const ctl = new AbortController(), t = setTimeout(()=>ctl.abort(), 28000);
+  try{
+    const images = shots.filter(Boolean).map(d=>d.split(",")[1]);
+    const r = await fetch("/.netlify/functions/analyze",{method:"POST",signal:ctl.signal,headers:{"Content-Type":"application/json"},body:JSON.stringify({aciklama,boyut,images})});
+    if(!r.ok) return null;
+    const j = await r.json();
+    return j && j.weight_g && j.hours ? j : null;
+  }catch(e){ return null; } finally { clearTimeout(t); }
+}
+
+function quote(g, h, adet, extra){
+  let price = (g*FIL_TL_GRAM + h*SAAT_TL) * KAR_CARPANI;
+  price = Math.ceil(Math.max(MIN_FIYAT, price)/10)*10 * adet;
+  return Object.assign({weight:g*adet, hours:h*adet, price}, extra||{});
+}
+
+$("#analyzeBtn").addEventListener("click", async () => {
+  showErr("");
+  const files = [...document.querySelectorAll(".img-in")].filter(i=>i.files[0]);
+  const aciklama = form.aciklama.value.trim(), boyut = form.boyut.value;
+  const adet = Math.max(1, parseInt(form.adet.value)||1);
+  if(!files.length) return showErr("Lütfen en az bir ürün görseli ekleyin.");
+  if(aciklama.length < 8) return showErr("Lütfen ürünü birkaç kelimeyle açıklayın.");
+  if(!boyut) return showErr("Lütfen yaklaşık boyutu seçin.");
+  if(totalSize() > 7*1024*1024) return showErr("Görseller toplam 7 MB’ı geçiyor. Daha küçük görseller seçin.");
+
+  const btn = $("#analyzeBtn"); btn.disabled = true;
+  $("#result").hidden = true; $("#progress").hidden = false;
+  const steps = ["Görseller inceleniyor…","MakerWorld’de aynı veya benzer modeller aranıyor…","En yakın model eşleştiriliyor…","Model bilgileri toplanıyor: boyut, ağırlık, baskı süresi…","Fiyat hesaplanıyor…"];
+  const remote = remoteLookup(aciklama, boyut);
+  for(let i=0;i<steps.length;i++){
+    $("#pText").textContent = steps[i];
+    $("#pBar").style.width = ((i+1)/steps.length*100)+"%";
+    await sleep(1400);
+  }
+  $("#pText").textContent = "Sonuçlar toplanıyor, birazdan hazır…";
+  const ai = await remote, bz = BOYUTLAR[boyut];
+  const res = ai ? quote(ai.weight_g, ai.hours, adet, {model:ai.model, url:ai.url, found:ai.found, note:ai.note}) : quote(bz.g, bz.h, adet);
+  $("#progress").hidden = true; btn.disabled = false; btn.textContent = "Yeniden hesapla";
+
+  const renk = form.renk.value;
+  const rm = $("#rModel"); rm.textContent = "";
+  if(res.found && res.model){
+    rm.append("Eşleşen model: ");
+    if(res.url){ const a=document.createElement("a"); a.href=res.url; a.target="_blank"; a.rel="noopener"; a.textContent=res.model; rm.append(a); } else rm.append(res.model);
+  } else rm.textContent = res.note || "Birebir model bulunamadı. Değerler boyuta göre tahmin edildi, modeliniz sipariş sonrası kontrol edilecek.";
+  $("#rW").textContent = "~"+Math.round(res.weight)+" g";
+  $("#rT").textContent = "~"+fmtTime(res.hours);
+  $("#rC").textContent = renk;
+  $("#rP").textContent = "~"+res.price+" ₺";
+  $("#h_w").value = Math.round(res.weight)+" g";
+  $("#h_t").value = fmtTime(res.hours);
+  $("#h_p").value = res.price+" TL";
+  $("#h_m").value = res.found && res.model ? res.model+" "+(res.url||"") : "Bulunamadı / manuel kontrol";
+  $("#result").hidden = false;
+  $("#result").scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+
+form.addEventListener("submit", async e => {
+  e.preventDefault(); showErr("");
+  if(totalSize() > 7*1024*1024) return showErr("Görseller toplam 7 MB’ı geçiyor.");
+  const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "Gönderiliyor…";
+  try{
+    const r = await fetch("/",{method:"POST",body:new FormData(form)});
+    if(!r.ok) throw new Error();
+    form.hidden = true; $("#done").hidden = false;
+    $("#done").scrollIntoView({behavior:"smooth",block:"center"});
+  }catch(err){
+    btn.disabled = false; btn.textContent = "Beğendim, talebi gönder";
+    showErr("Talep gönderilemedi. Lütfen tekrar deneyin ya da cagataykaraavci@gmail.com adresine yazın.");
+  }
+});
+
+/* Anlatımlı animasyon */
+(()=>{
+const NAR=["Merhaba! Önce ürünün görsellerini yükle, kısaca anlat ve rengini seç.","Yapay zekâ MakerWorld’de aynı ya da en yakın modeli arar ve ölçülerini toplar.","Ağırlığa ve baskı süresine göre makul bir tahmini fiyat görürsün.","Beğenirsen talebi gönder. Bambu Lab A1 ve AMS ile ürünün katman katman basılır.","Hazır olunca ürünün sana ulaşır. Hepsi bu kadar!"];
+const COL={k:["#6a6f8f","#3d4058","#2a2c40"],b:["#7a95ff","#2b59ff","#1d3fc0"],g:["#55dd90","#1fa95b","#157a41"],r:["#ff8089","#e63946","#b72b37"]};
+const iso=(x,y,z)=>(320+(x-y)*22)+","+(170+(x+y)*12-z*9);
+const poly=(p,f)=>`<polygon points="${p.join(" ")}" fill="${f}"/>`;
+const T=t=>`<text x="320" y="56" fill="#fff" font-size="26" text-anchor="middle">${t}</text>`;
+const S=[
+()=>T("Görselini gönder")+[["#ffe3e6","#e63946"],["#dfe8ff","#2b59ff"],["#dcf6e6","#1fa95b"]].map((c,i)=>`<g class="up" style="animation-delay:${i*.5}s"><rect x="${90+i*150}" y="100" width="130" height="130" rx="18" fill="${c[0]}" stroke="${c[1]}" stroke-width="5"/><text x="${155+i*150}" y="182" font-size="60" text-anchor="middle">📱</text></g>`).join("")+`<g class="pop" style="animation-delay:1.8s"><rect x="130" y="262" width="380" height="46" rx="23" fill="#fff"/><text x="320" y="292" font-size="19" fill="#1c1c22" text-anchor="middle">“Telefon standı, 10 cm, mavi”</text></g>`,
+()=>T("MakerWorld’de aranıyor…")+["🧸","🔩","🏺","🚗","📱","🪴"].map((e,i)=>{const x=110+(i%3)*140,y=80+Math.floor(i/3)*120;return `<rect x="${x}" y="${y}" width="120" height="100" rx="16" fill="#fff"/><text x="${x+60}" y="${y+66}" font-size="48" text-anchor="middle">${e}</text>`}).join("")+`<rect class="pop" style="animation-delay:3.4s" x="250" y="200" width="120" height="100" rx="16" fill="none" stroke="#3ddc84" stroke-width="7"/><text class="pop" style="animation-delay:3.6s" x="320" y="330" font-size="24" fill="#fff" text-anchor="middle">Eşleşti ✓</text><text class="mag" x="140" y="150" font-size="56">🔍</text>`,
+()=>T("Tahmini fiyat")+`<g class="pop"><rect x="180" y="95" width="280" height="125" rx="28" fill="#fff"/><text x="320" y="178" font-size="62" fill="#1fa95b" text-anchor="middle">~210 ₺</text></g>`+["⚖️ 50 g","⏱️ 4 sa 30 dk","🎨 Mavi"].map((t,i)=>`<g class="pop" style="animation-delay:${.8+i*.4}s"><rect x="${70+i*185}" y="255" width="160" height="44" rx="22" fill="#fff"/><text x="${150+i*185}" y="285" font-size="19" fill="#1c1c22" text-anchor="middle">${t}</text></g>`).join(""),
+()=>{let s=T("Katman katman baskı")+`<rect x="176" y="70" width="10" height="230" rx="5" fill="#e8ebff"/><rect x="454" y="70" width="10" height="230" rx="5" fill="#e8ebff"/>`+poly([iso(-1,-1,0),iso(5,-1,0),iso(5,5,0),iso(-1,5,0)],"#23253a");
+ for(let i=0;i<14;i++){const c=COL["kbgr"[Math.floor(i/3.5)]];s+=`<g class="ly" style="animation-delay:${(i*.32).toFixed(2)}s">`+poly([iso(0,4,i),iso(4,4,i),iso(4,4,i+1),iso(0,4,i+1)],c[1])+poly([iso(4,0,i),iso(4,4,i),iso(4,4,i+1),iso(4,0,i+1)],c[2])+poly([iso(0,0,i+1),iso(4,0,i+1),iso(4,4,i+1),iso(0,4,i+1)],c[0])+`</g>`}
+ return s+`<g class="noz"><rect x="176" y="183" width="288" height="8" rx="4" fill="#fff"/><polygon points="313,191 327,191 320,209" fill="#ffd166"/></g><rect x="500" y="90" width="120" height="50" rx="12" fill="#fff"/>`+["#1c1c22","#2b59ff","#1fa95b","#e63946"].map((c,i)=>`<circle cx="${524+i*24}" cy="115" r="10" fill="${c}"/>`).join("")+`<text x="560" y="166" font-size="17" fill="#fff" text-anchor="middle">AMS ile renk değişimi</text>`},
+()=>T("Kapında!")+`<text class="pop" x="320" y="225" font-size="130" text-anchor="middle">📦</text><text class="pop" style="animation-delay:.6s" x="320" y="300" font-size="26" fill="#fff" text-anchor="middle">Teşekkürler 💙</text>`+Array.from({length:14},(_,i)=>`<circle class="fall" cx="${30+i*45}" cy="0" r="7" fill="${["#ff8089","#7a95ff","#55dd90","#ffd166"][i%4]}" style="animation-delay:${(i*.37%2).toFixed(2)}s"/>`).join("")
+];
+const svg=$("#scn"),cap=$("#cap"),dots=$("#dots");
+let cur=0,playing=!matchMedia("(prefers-reduced-motion:reduce)").matches,timer,sound=false;
+NAR.forEach((_,k)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Sahne "+(k+1));b.onclick=()=>go(k);dots.append(b)});
+function draw(i){cur=(i+S.length)%S.length;svg.innerHTML=S[cur]();cap.textContent=NAR[cur];[...dots.children].forEach((b,k)=>b.classList.toggle("on",k===cur))}
+function speak(t){if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="tr-TR";const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith("tr"));if(v)u.voice=v;speechSynthesis.speak(u)}
+function go(i){draw(i);clearTimeout(timer);if(sound)speak(NAR[cur]);if(playing)timer=setTimeout(()=>go(cur+1),7000)}
+$("#pp").onclick=()=>{playing=!playing;$("#pp").textContent=playing?"⏸ Duraklat":"▶ Oynat";if(playing)go(cur);else{clearTimeout(timer);if("speechSynthesis" in window)speechSynthesis.cancel()}};
+$("#snd").onclick=()=>{sound=!sound;$("#snd").textContent=sound?"🔊 Sesli anlatım açık":"🔇 Sesli anlatım kapalı";if(sound)speak(NAR[cur]);else if("speechSynthesis" in window)speechSynthesis.cancel()};
+$("#pp").textContent=playing?"⏸ Duraklat":"▶ Oynat";
+draw(0);
+if("IntersectionObserver" in window)new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){go(0);o.disconnect()}},{threshold:.4}).observe($(".stage"));else go(0);
+})();
+</script>
+</body>
+</html>
